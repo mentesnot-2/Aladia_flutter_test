@@ -14,9 +14,9 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Set up Flutter
-        uses: subosito/flutter-action@v2  # Use v2 instead of v3
+        uses: subosito/flutter-action@v2  # Use v2
         with:
-          flutter-version: '3.7.0'  # Specify the Flutter version you need
+          flutter-version: '3.10.0'  # Update to a compatible Flutter version
 
       - name: Install dependencies
         run: flutter pub get
@@ -25,7 +25,7 @@ jobs:
         run: flutter test
 
       - name: Build the app
-        run: flutter build apk  # Change this to your desired build command
+        run: flutter build apk  # Adjust as necessary
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
