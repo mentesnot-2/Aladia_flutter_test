@@ -9,11 +9,11 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:aladia_login/components/custom_button.dart' as _i2;
-import 'package:aladia_login/widgetbook/login_screen_wigetbook.dart' as _i5;
-import 'package:aladia_login/widgetbook/password_screen_widgetbook.dart' as _i3;
-import 'package:aladia_login/widgets/widgetform_widgetbook.dart' as _i4;
 import 'package:widgetbook/widgetbook.dart' as _i1;
+import 'package:widgetbook_workspace/custom_button.dart' as _i2;
+import 'package:widgetbook_workspace/login_screen.dart' as _i5;
+import 'package:widgetbook_workspace/password_screen.dart' as _i3;
+import 'package:widgetbook_workspace/social_login_button.dart' as _i4;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -40,18 +40,12 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookFolder(
         name: 'screens',
         children: [
-          _i1.WidgetbookComponent(
+          _i1.WidgetbookLeafComponent(
             name: 'PasswordScreen',
-            useCases: [
-              _i1.WidgetbookUseCase(
-                name: 'Password Field - Default',
-                builder: _i3.passwordFieldDefault,
-              ),
-              _i1.WidgetbookUseCase(
-                name: 'Password Screen - Default',
-                builder: _i3.passwordScreenDefault,
-              ),
-            ],
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Password Screen - Default',
+              builder: _i3.passwordScreenDefault,
+            ),
           )
         ],
       ),
@@ -72,14 +66,12 @@ final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
     name: 'widgetbook',
     children: [
-      _i1.WidgetbookComponent(
+      _i1.WidgetbookLeafComponent(
         name: 'LoginScreenWidget',
-        useCases: [
-          _i1.WidgetbookUseCase(
-            name: 'Login Screen - Default',
-            builder: _i5.loginScreenDefault,
-          ),
-        ],
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Login Screen - Default',
+          builder: _i5.loginScreenDefault,
+        ),
       )
     ],
   ),

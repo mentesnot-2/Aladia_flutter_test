@@ -44,28 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       // Background Color Toggle Buttons
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                _isWhiteBackground = true;
-                              });
-                            },
-                            child: const Text('White Background'),
-                          ),
-                          const SizedBox(width: 10),
-                          ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                _isWhiteBackground = false;
-                              });
-                            },
-                            child: const Text('Black Background'),
-                          ),
-                        ],
-                      ),
                       const SizedBox(height: 20),
                       Transform(
                         alignment: Alignment.topCenter,

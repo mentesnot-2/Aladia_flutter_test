@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-import 'package:aladia_login/presentation/blocs/auth_bloc.dart'; // Adjust the import as needed
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 @widgetbook.UseCase(
   name: 'Login Screen - Default',
   type: LoginScreenWidget,
@@ -10,11 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 Widget loginScreenDefault(BuildContext context) {
   return const LoginScreenWidget();
 }
-
-@widgetbook.UseCase(
-  name: 'Login Screen - Auth Failure',
-  type: LoginScreenWidget,
-)
 
 
 // Main Login Screen Widget
@@ -208,7 +200,11 @@ class _EnterButtonState extends State<EnterButton> {
         onPressed: _isLoading
             ? null
             : () {
-                final email = (context.findAncestorWidgetOfExactType<EmailInputField>() as EmailInputField).controller.text;
+                final email =
+                    (context.findAncestorWidgetOfExactType<EmailInputField>()
+                            as EmailInputField)
+                        .controller
+                        .text;
                 _submitEmail(email);
               },
         style: ElevatedButton.styleFrom(

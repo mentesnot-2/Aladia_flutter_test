@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -16,26 +19,38 @@ jobs:
       - name: Set up Java 17
         uses: actions/setup-java@v3
         with:
-          java-version: '17'  # Specify Java version 17
-          distribution: 'temurin'  # Use Temurin JDK distribution
+          java-version: '17'
+          distribution: 'temurin'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.3'  # Specify the Flutter version you need
+          flutter-version: '3.24.3'
 
       - name: Install dependencies
         run: flutter pub get
-
       - name: Run tests
         run: flutter test
-
-      - name: Build the app
-        run: flutter build apk  # Change this to your desired build command
+      - name: Build the main app
+        run: flutter build apk -t lib/main.dart  
       
+      - name: Install Widgetbook CLI
+        run: dart pub global activate widgetbook_cli
+
+      - name: Build Widgetbook
+        run: |
+          cd widgetbook
+          flutter pub get
+          dart run build_runner build -d
+          flutter build web -t lib/main.dart  # Specify Widgetbook entry point here
+
+      - name: Push Widgetbook Build
+        run: | 
+          cd widgetbook
+          widgetbook cloud build push --api-key c4ccb2b7747e7c298942dfa275c220f038c2b283b01d0f4a364c897e1fc1bdaf
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: my-build-artifact
-          path: build/app/outputs/apk/release/app-release.apk  # Adjust the path as needed
+          path: build/app/outputs/apk/release/app-release.apk  #
