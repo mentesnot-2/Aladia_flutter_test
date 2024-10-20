@@ -76,10 +76,6 @@ final directories = <_i1.WidgetbookNode>[
         name: 'LoginScreenWidget',
         useCases: [
           _i1.WidgetbookUseCase(
-            name: 'Login Screen - Auth Failure',
-            builder: (context) => _i5.LoginScreenWidget(),
-          ),
-          _i1.WidgetbookUseCase(
             name: 'Login Screen - Default',
             builder: _i5.loginScreenDefault,
           ),

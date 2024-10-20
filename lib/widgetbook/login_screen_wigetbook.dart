@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
-import 'package:aladia_login/presentation/blocs/auth_bloc.dart'; // Adjust the import as needed
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 @widgetbook.UseCase(
   name: 'Login Screen - Default',
   type: LoginScreenWidget,
@@ -11,14 +8,6 @@ Widget loginScreenDefault(BuildContext context) {
   return const LoginScreenWidget();
 }
 
-Widget loginScreenAuthFailure(BuildContext context) {
-  return const LoginScreenWidget();
-}
-
-@widgetbook.UseCase(
-  name: 'Login Screen - Auth Failure',
-  type: LoginScreenWidget,
-)
 
 // Main Login Screen Widget
 class LoginScreenWidget extends StatelessWidget {
