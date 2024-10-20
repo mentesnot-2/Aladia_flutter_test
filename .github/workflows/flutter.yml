@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Set up Java 17
         uses: actions/setup-java@v3
         with:
@@ -29,19 +29,29 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+      
+      - name: Get dependencies for widgetbook_workspace
+        run: |
+          cd widgetbook_workspace  # Navigate to widgetbook_workspace directory if it's local
+          flutter pub get  # Install dependencies
+
+      - name: Run build runner for Widgetbook
+        run: dart run build_runner build
+
       - name: Run tests
         run: flutter test
-      - name: Build the main app
-        run: flutter build apk -t lib/main.dart  
       
+      - name: Build the main app
+        run: flutter build apk -t lib/main.dart
+
       - name: Install Widgetbook CLI
         run: dart pub global activate widgetbook_cli
 
       - name: Build Widgetbook
         run: |
           flutter pub get
-          dart run build_runner build -d
-          flutter build web -t widgetbook/lib/main.dart # Specify Widgetbook entry point here
+          dart run build_runner build
+          flutter build web -t widgetbook/lib/main.dart  # Adjusted to the root 'widgetbook' folder
 
       - name: Push Widgetbook Build
         run: widgetbook cloud build push --api-key c4ccb2b7747e7c298942dfa275c220f038c2b283b01d0f4a364c897e1fc1bdaf
@@ -50,4 +60,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: my-build-artifact
-          path: build/app/outputs/apk/release/app-release.apk  #
+          path: build/app/outputs/apk/release/app-release.apk
