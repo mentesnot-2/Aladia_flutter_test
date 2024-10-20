@@ -34,8 +34,19 @@ jobs:
 
       - name: Build the app
         run: flutter build apk  # Change this to your desired build command
-      - name: Run WidgetBook
-        run: flutter run -d web-server -t lib/widgetbook.dart
+      - name: Build Widgetbook
+        working-directory: widgetbook
+        run: |
+            flutter pub get
+            dart run build_runner build -d
+            flutter build web -t lib/widgetbook.dart
+
+      - name: Install Widgetbook CLI
+        run: dart pub global activate widgetbook_cli
+
+      - name: Push Widgetbook Build
+        working-directory: widgetbook
+        run: widgetbook cloud build push --api-key d203462773aa021c53ba826b9a51e8355c87c9e699eee53ad13b6289549b7801
 
 
       - name: Upload build artifacts
