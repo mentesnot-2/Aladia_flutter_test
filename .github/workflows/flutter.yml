@@ -45,7 +45,7 @@ jobs:
           flutter build web -t lib/main.dart  # Specify Widgetbook entry point here
 
       - name: Push Widgetbook Build
-        run: 
+        run: | 
           cd widgetbook
           widgetbook cloud build push --api-key c4ccb2b7747e7c298942dfa275c220f038c2b283b01d0f4a364c897e1fc1bdaf
 
