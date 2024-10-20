@@ -1,64 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../blocs/auth_bloc.dart';
-import '../../core/utils/validators.dart';
 
-class FormWidgets {
-  static Widget logoWidget() {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      child: Image.asset(
-        'assets/logo.png', // Replace with your logo asset
-        fit: BoxFit.contain,
-        height: 140,
-      ),
-    );
-  }
+class SocialLoginButtons extends StatelessWidget {
+  const SocialLoginButtons({super.key});
 
-  static Widget emailInputField(TextEditingController controller) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const Text('Enter your email', style: TextStyle(fontSize: 18)),
-        const SizedBox(height: 10),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-            color: Colors.grey[500],
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: TextField(
-            controller: controller,
-            decoration: const InputDecoration(
-              icon: Icon(Icons.email),
-              hintText: 'E-mail',
-              border: InputBorder.none,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  static Widget loginButton(BuildContext context, TextEditingController controller, AuthState state) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          if (Validators.validateEmail(controller.text) == null) {
-            context.read<AuthBloc>().add(CheckUserEvent(controller.text));
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Invalid email address')),
-            );
-          }
-        },
-        child: const Text('Login'),
-      ),
-    );
-  }
-
-  static Widget socialLoginButtons() {
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         const Text('Or login with'),
@@ -134,7 +80,7 @@ class FormWidgets {
                 width: 24,
               ),
               onPressed: () {
-
+                // Handle Apple login here
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -147,13 +93,6 @@ class FormWidgets {
             ),
           ),
         ),
-        const SizedBox(height: 20),
-
-        // // Terms & Conditions
-        // const Text(
-        //   'Terms & conditions',
-        //   style: TextStyle(decoration: TextDecoration.underline),
-        // ),
       ],
     );
   }
