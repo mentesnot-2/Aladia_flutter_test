@@ -41,10 +41,10 @@ jobs:
         run: |
           flutter pub get
           dart run build_runner build -d
-          flutter build web -t lib/widgetbook.dart  # Specify Widgetbook entry point here
+          flutter build web -t widgetbook/lib/main.dart # Specify Widgetbook entry point here
 
       - name: Push Widgetbook Build
-        run: widgetbook cloud build push --api-key d203462773aa021c53ba826b9a51e8355c87c9e699eee53ad13b6289549b7801
+        run: widgetbook cloud build push --api-key c4ccb2b7747e7c298942dfa275c220f038c2b283b01d0f4a364c897e1fc1bdaf
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
