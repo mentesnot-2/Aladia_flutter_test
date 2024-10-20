@@ -33,7 +33,7 @@ jobs:
       - name: Build the app
         run: flutter build apk  # Change this to your desired build command
       - name: Run WidgetBook
-        run: flutter run -d chrome -t lib/widgetbook.dart --no-sound-null-safety
+        run: flutter run -d chrome -t lib/widgetbook.dart 
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
