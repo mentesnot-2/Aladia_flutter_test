@@ -11,11 +11,14 @@ Widget loginScreenDefault(BuildContext context) {
   return const LoginScreenWidget();
 }
 
+Widget loginScreenAuthFailure(BuildContext context) {
+  return const LoginScreenWidget();
+}
+
 @widgetbook.UseCase(
   name: 'Login Screen - Auth Failure',
   type: LoginScreenWidget,
 )
-
 
 // Main Login Screen Widget
 class LoginScreenWidget extends StatelessWidget {
@@ -208,7 +211,11 @@ class _EnterButtonState extends State<EnterButton> {
         onPressed: _isLoading
             ? null
             : () {
-                final email = (context.findAncestorWidgetOfExactType<EmailInputField>() as EmailInputField).controller.text;
+                final email =
+                    (context.findAncestorWidgetOfExactType<EmailInputField>()
+                            as EmailInputField)
+                        .controller
+                        .text;
                 _submitEmail(email);
               },
         style: ElevatedButton.styleFrom(
